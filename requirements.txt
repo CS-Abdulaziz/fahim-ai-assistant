@@ -1,0 +1,10 @@
+streamlit
+openai
+pinecone-client
+langchain
+langchain-community
+langchain-huggingface
+langchain-text-splitters
+python-pptx
+docx2txt
+pypdf
