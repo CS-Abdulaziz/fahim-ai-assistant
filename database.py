@@ -4,16 +4,19 @@ from langchain_huggingface import HuggingFaceEmbeddings
 
 @st.cache_resource
 def load_embedding_model():
-
     return HuggingFaceEmbeddings(model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2")
 
 def init_pinecone(api_key, index_name):
-
     pc = Pinecone(api_key=api_key)
     return pc.Index(index_name)
 
 def sync_to_pinecone(index, chunks, model, namespace="documind_ns"):
-    
+    try:
+        index.delete(delete_all=True, namespace=namespace)
+    except Exception as e:
+     
+        print(f"Note: Could not delete or namespace already empty: {e}")
+
     vectors = []
     for i, chunk in enumerate(chunks):
         if chunk.page_content.strip():
