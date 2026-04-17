@@ -1,4 +1,3 @@
-streamlit
 openai
 pinecone-client
 langchain
@@ -8,3 +7,7 @@ langchain-text-splitters
 python-pptx
 docx2txt
 pypdf
+fastapi
+uvicorn
+python-multipart
+python-dotenv
