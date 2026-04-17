@@ -1,7 +1,11 @@
 import streamlit as st
 import openai
-from utils import process_uploaded_file
-from database import load_embedding_model, init_pinecone, sync_to_pinecone
+import os
+from backend.utils import process_uploaded_file
+from backend.database import load_embedding_model, init_pinecone, sync_to_pinecone
+from dotenv import load_dotenv
+
+load_dotenv()
 
 st.set_page_config(page_title="Fahim AI", page_icon="🧠", layout="centered")
 
@@ -25,16 +29,11 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-try:
 
-    OPENROUTER_API_KEY = st.secrets["OPENROUTER_API_KEY"]
-    PINECONE_API_KEY = st.secrets["PINECONE_API_KEY"]
-    PINECONE_INDEX_NAME = st.secrets["PINECONE_INDEX_NAME"]
+OPENROUTER_API_KEY = os.getenv["OPENROUTER_API_KEY"]
+PINECONE_API_KEY = os.getenv["PINECONE_API_KEY"]
+PINECONE_INDEX_NAME = os.getenv["PINECONE_INDEX_NAME"]
 
-except KeyError as e:
-
-    st.error(f"Secret Key {e} not found")
-    st.stop()
 
 client = openai.OpenAI(
 
