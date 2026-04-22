@@ -5,6 +5,7 @@ langchain-community
 langchain-huggingface
 langchain-text-splitters
 python-pptx
+sentence-transformers
 docx2txt
 pypdf
 fastapi
